@@ -379,11 +379,12 @@
         const white = { r: 255, g: 255, b: 255 };
         const gray50 = { r: 249, g: 250, b: 251 }; // Tailwind's gray-50
         let targetBg = { ...white }, currentBg = { ...white };
+        let latestScrollY = window.scrollY;
+        let scrollUpdateScheduled = false;
 
-        // Named function to be able to remove it later
-        const handleScroll = () => {
+        const updateScrollTargets = () => {
             const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-            scrollFraction = maxScroll > 0 ? window.scrollY / maxScroll : 0;
+            scrollFraction = maxScroll > 0 ? latestScrollY / maxScroll : 0;
             
             targetCameraZ = 5.0 + Math.cos(scrollFraction * Math.PI * 2) * 4.5;
             targetCameraX = Math.sin(scrollFraction * Math.PI * 2) * 5.0;
@@ -395,7 +396,18 @@
             targetBg.b = white.b + (gray50.b - white.b) * scrollFraction;
 
             targetDrawFraction = Math.min(1.0, scrollFraction * 4.0);
+            scrollUpdateScheduled = false;
         };
+
+        // Named function to be able to remove it later
+        const handleScroll = () => {
+            latestScrollY = window.scrollY;
+            if (scrollUpdateScheduled) return;
+            scrollUpdateScheduled = true;
+            requestAnimationFrame(updateScrollTargets); // Throttle updates for smoother mobile scrolling
+        };
+
+        updateScrollTargets(); // Ensure initial values are correct
         window.addEventListener('scroll', handleScroll);
 
         // === Resize Handler ===
