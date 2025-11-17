@@ -78,7 +78,7 @@
 
     <!-- Canvas for Three.js scene --><canvas id="webgl-canvas"></canvas>
     
-    <!-- Loading Message --><div id="loading-message">Loading 3D Model...</div>
+    <!-- Loading Message (content set by JS) --><div id="loading-message"></div>
 
     <!-- Scrollable content --><main>
         <section class="scroll-section">
@@ -205,6 +205,7 @@
         let totalPointsVertices = 0;
         
         // Show loading message before starting the download
+        loadingMessage.innerText = 'Loading 3D Model...';
         loadingMessage.style.display = 'block';
 
         gltfLoader.load(
