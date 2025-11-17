@@ -7,7 +7,7 @@ description: "A personal story about stripping decisions down to their fundament
 image: /assets/blog/returning-to-first-principles.png
 ---
 
-![Returning to First Principles]({{ "/assets/blog/returning-to-first-principles.png" | relative_url }})
+![Returning to First Principles]({{ "/assets/blog/returning-to-first-principles.png" | relative_url }}){: style="max-width: 260px; width: 60%; display: block; margin: 0 auto 1.5rem;" }
 
 I didn’t start using first principles because it sounded smart. I used it because life got noisy, and the usual routines stopped working. You know that moment when everything feels off, but nothing is technically wrong? That was me. So I did the one thing most people avoid: I tore everything down to the studs.
 
