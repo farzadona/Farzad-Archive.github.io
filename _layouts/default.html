@@ -14,15 +14,15 @@
 
     {% include post_header.html %}
 
-    {% unless page.custom_background %}
+    {% if page.cinematic_bg %}
     <canvas id="bg-canvas"></canvas>
-    {% endunless %}
+    {% endif %}
 
     <main class="relative w-full max-w-4xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-6 md:py-10 z-10">
         {{ content }}
     </main>
 
-    {% unless page.custom_background %}
+    {% if page.cinematic_bg %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script type="module">
         // === THREE.JS CINEMATIC BACKDROP ===
@@ -119,7 +119,7 @@
         init3D();
         animate();
     </script>
-    {% endunless %}
+    {% endif %}
 
 </body>
 </html>
